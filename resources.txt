@@ -1,0 +1,15 @@
+http://docs.mongoengine.org/guide/querying.html#
+https://docs.mongoengine.org/tutorial.html
+mongoengine datetimefield default now --> https://stackoverflow.com/questions/8098122/mongoengine-creation-time-attribute-in-document
+https://flask-jwt-extended.readthedocs.io/en/stable/add_custom_data_claims/
+http://docs.mongoengine.org/guide/querying.html#advanced-queries
+
+flask restful create user
+https://dev.to/paurakhsharma/flask-rest-api-part-3-authentication-and-authorization-5935
+https://dev.to/paurakhsharma/flask-rest-api-part-4-exception-handling-5c6a
+https://github.com/paurakhsharma/flask-rest-api-blog-series/blob/master/Part%20-%203/movie-bag/app.py
+https://pythonhosted.org/Flask-JWT/
+http://docs.mongoengine.org/guide/querying.html#sorting-ordering-results
+
+flask jwt get current user
+https://stackoverflow.com/questions/61116006/how-can-i-get-the-current-userid-in-flask-jwt-extended
