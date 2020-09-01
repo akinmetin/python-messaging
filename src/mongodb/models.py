@@ -26,3 +26,9 @@ class Logs(db.Document):
     err_type = db.StringField(required=True)
     username = db.StringField(required=True)
     occured_at = db.DateTimeField(required=True, default=datetime.utcnow())
+
+
+class Block(db.Document):
+    blocker = db.StringField(required=True)
+    blocked = db.StringField(required=True)
+    blocked_at = db.DateTimeField(required=True, default=datetime.utcnow())

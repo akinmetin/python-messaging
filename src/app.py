@@ -6,11 +6,13 @@ from decouple import config
 from mongodb.db import initialize_db
 from flask_restful import Api
 from res.routes import initialize_routes
+from res.errors import errors
+
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'super-secret'
 
-api = Api(app)
+api = Api(app, errors=errors)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
