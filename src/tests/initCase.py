@@ -10,7 +10,6 @@ class initCase(unittest.TestCase):
         self.app = app.test_client()
         self.db = db.get_db()
 
-
     def tearDown(self):
         # Delete Database collections after the test is complete
         for collection in self.db.list_collection_names():

@@ -1,3 +1,4 @@
+import json
 from flask import Response, request
 from mongodb.models import Message, User, Logs, Block
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -36,6 +37,13 @@ class PrivateMessageApi(Resource):
         try:
             username = get_jwt_identity()
             body = request.get_json()
+
+            # throw exception if user blocked target or target blocked user
+            if Block.objects.filter((Q(blocker__iexact=username) & Q(blocked__iexact=target)) | (Q(blocker__iexact=target) & Q(blocked__iexact=username))).count() >= 1:
+                message = {"message": "Communication between you and the target is blocked"}
+                return Response(json.dumps(message), mimetype="application/json", status=403)
+                # return 'Communication between you and the target is blocked', 403
+
             message_query = Message(receiver=target, message=body["message"], sent_by=username)
             message_query.save()
             # log
@@ -55,10 +63,11 @@ class PrivateMessageApi(Resource):
 
 
 class BlockApi(Resource):
+    @jwt_required
     def put(self, target):
         try:
             username = get_jwt_identity()
-            
+
             # check for if target is already blocked
             if Block.objects.filter((Q(blocker__iexact=username) & Q(blocked__iexact=target)) | (Q(blocker__iexact=target) & Q(blocked__iexact=username))).count() >= 1:
                 raise AlreadyExistsError
