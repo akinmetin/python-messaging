@@ -1,10 +1,10 @@
 import json
 from flask import Response, request
-from mongodb.models import Message, User, Logs, Block
+from mongodb.models import Message, Logs, Block
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 from mongoengine.queryset.visitor import Q
-from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
+from mongoengine.errors import NotUniqueError, DoesNotExist, ValidationError, InvalidQueryError
 from res.errors import SchemaValidationError, AlreadyExistsError, InternalServerError, NotExistsError
 
 

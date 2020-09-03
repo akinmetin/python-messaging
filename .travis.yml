@@ -1,0 +1,13 @@
+language: python
+install:
+    - pip install -r requirements.txt
+# command to run tests
+script:
+    - unittest
+env:
+    - DB_USER=mongodb_root
+    - DB_PASSWORD=mongodbroot_pw
+    - DB_HOST=127.0.0.1
+    - DB_PORT=27017
+    - DB_NAME=api
+    - JWT_SECRET_KEY=mysecretkey
