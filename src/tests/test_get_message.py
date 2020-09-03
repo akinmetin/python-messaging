@@ -4,7 +4,7 @@ from tests.initCase import initCase
 class TestGetPrivateMessage(initCase):
 
     def test_successful_private_messaging(self):
-        # Signup and login akin
+        # Signup and login with "akin"
         username = "akin"
         password = "123456789"
         user_payload = json.dumps({
@@ -29,7 +29,7 @@ class TestGetPrivateMessage(initCase):
         # Then
         self.assertEqual(200, response.status_code)
         
-        # Signup and login metin
+        # Signup and login with "metin"
         username = "metin"
         password = "123456789"
         user_payload = json.dumps({
