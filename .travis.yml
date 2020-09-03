@@ -13,15 +13,13 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 before_script:
-  - docker-compose up -d --build
+  - docker-compose build
 
 script:
-  - docker-compose run app sh -c "sleep 15 && coverage run -m unittest discover"
+  - docker-compose up -d
+  - docker-compose run app sh -c "coverage run -m unittest"
   - docker-compose run app sh -c "coverage xml"
   - docker-compose run app sh -c "python-codacy-coverage -r coverage.xml"
-
-after_success:
-  - coveralls
 
 after_script:
   - docker-compose down
