@@ -16,8 +16,12 @@ before_script:
   - docker-compose up -d --build
 
 script:
+  - docker-compose run app sh -c "sleep 15 && coverage run -m unittest discover"
   - docker-compose run app sh -c "coverage xml"
   - docker-compose run app sh -c "python-codacy-coverage -r coverage.xml"
+
+after_success:
+  - coveralls
 
 after_script:
   - docker-compose down
