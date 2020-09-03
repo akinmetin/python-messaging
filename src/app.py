@@ -10,7 +10,7 @@ from res.errors import errors
 
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = 'super-secret'
+app.config['JWT_SECRET_KEY'] = config("JWT_SECRET_KEY")
 
 api = Api(app, errors=errors)
 bcrypt = Bcrypt(app)
@@ -30,5 +30,5 @@ app.config['MONGODB_SETTINGS'] = {
 initialize_db(app)
 initialize_routes(api)
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+# if __name__ == '__main__':
+    # app.run(debug=True, host='0.0.0.0', port=5000)
