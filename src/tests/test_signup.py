@@ -15,6 +15,7 @@ class SignupTest(initCase):
         response = self.app.post('/api/auth/signup', headers={"Content-Type": "application/json"}, data=payload)
 
         # check the equality of response status code and expected data
+        self.assertEqual('Signup Success', response.json['message'])
         self.assertEqual(200, response.status_code)
 
     def test_signup_with_extra_field(self):

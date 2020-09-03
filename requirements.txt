@@ -4,3 +4,5 @@ Flask-RESTful>=0.3.8
 flask-mongoengine>=0.9.5
 Flask-Bcrypt>=0.7.1
 Flask-JWT-Extended>=3.24.1
+coverage>=5.2.1
+gunicorn>=20.0.4

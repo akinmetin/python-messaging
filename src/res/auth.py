@@ -1,3 +1,4 @@
+import json
 from flask import Response, request
 from flask_jwt_extended import create_access_token
 from mongodb.models import User, Logs
@@ -17,6 +18,8 @@ class SignupApi(Resource):
             # id = user.id
             Response("success", mimetype="application/json", status=200)
             # return {'id': str(id)}, 200
+            message = {"message": "Signup Success"}
+            return Response(json.dumps(message), mimetype="application/json", status=200)
         except FieldDoesNotExist:
             # log
             log_query = Logs(err_type="SchemaValidationError", username='None')
