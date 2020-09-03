@@ -26,11 +26,11 @@ errors = {
          "status": 400
      },
      "AlreadyExistsError": {
-         "message": "Movie with given name already exists",
+         "message": "User with the given username already exists",
          "status": 400
      },
      "NotExistsError": {
-         "message": "Movie with given id doesn't exists",
+         "message": "Message doesn't exists",
          "status": 400
      },
      "UsernameAlreadyExistsError": {

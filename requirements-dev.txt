@@ -1,0 +1,8 @@
+python-decouple>=3.3
+Flask>=1.1.2
+Flask-RESTful>=0.3.8
+flask-mongoengine>=0.9.5
+Flask-Bcrypt>=0.7.1
+Flask-JWT-Extended>=3.24.1
+coverage>=5.2.1
+flake8>=3.8.3

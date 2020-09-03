@@ -4,7 +4,7 @@ from mongodb.models import User, Logs
 from flask_restful import Resource
 import datetime
 from mongoengine.errors import FieldDoesNotExist, NotUniqueError, DoesNotExist
-from res.errors import SchemaValidationError, EmailAlreadyExistsError, UnauthorizedError, InternalServerError
+from res.errors import SchemaValidationError, AlreadyExistsError, UnauthorizedError, InternalServerError
 
 
 class SignupApi(Resource):
@@ -14,8 +14,9 @@ class SignupApi(Resource):
             user = User(**body)
             user.hash_password()
             user.save()
-            id = user.id
-            return {'id': str(id)}, 200
+            # id = user.id
+            Response("success", mimetype="application/json", status=200)
+            # return {'id': str(id)}, 200
         except FieldDoesNotExist:
             # log
             log_query = Logs(err_type="SchemaValidationError", username='None')
@@ -23,17 +24,17 @@ class SignupApi(Resource):
             raise SchemaValidationError
         except NotUniqueError:
             # log
-            log_query = Logs(err_type="EmailAlreadyExistsError", username='None')
+            log_query = Logs(err_type="AlreadyExistsError", username='None')
             log_query.save()
-            raise EmailAlreadyExistsError
-        except Exception as e:
+            raise AlreadyExistsError
+        except Exception:
             # log
             log_query = Logs(err_type="InternalServerError", username='None')
             log_query.save()
             raise InternalServerError
 
 
-class LoginApi(Resource): 
+class LoginApi(Resource):
     def post(self):
         try:
             body = request.get_json()
@@ -43,7 +44,8 @@ class LoginApi(Resource):
                 # log
                 log_query = Logs(err_type="Login failed", username=body.get('username'))
                 log_query.save()
-                return {'error': 'Email or password invalid'}, 401
+                raise UnauthorizedError
+                # return {'message': 'Email or password invalid'}, 401
 
             # log
             log_query = Logs(err_type="Login success", username=body.get('username'))
@@ -57,7 +59,7 @@ class LoginApi(Resource):
             log_query = Logs(err_type="InternalServerError", username=body.get('username'))
             log_query.save()
             raise UnauthorizedError
-        except Exception as e:
+        except Exception:
             # log
             log_query = Logs(err_type="InternalServerError", username=body.get('username'))
             log_query.save()

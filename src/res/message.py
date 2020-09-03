@@ -11,14 +11,24 @@ class PrivateMessageApi(Resource):
     @jwt_required
     def get(self, target):
         try:
-            receiver = User.objects.get(username=get_jwt_identity())
+            username = get_jwt_identity()
+            # receiver = User.objects.get(username=get_jwt_identity())
             # private_messages = Message.objects.filter(sent_by=target, receiver=receiver.username).order_by('+created_at')
-            private_messages = Message.objects.filter((Q(receiver__iexact=target) & Q(sent_by__iexact=receiver.username)) | (Q(receiver__iexact=receiver.username) & Q(sent_by__iexact=target))).order_by('-created_at')
+            private_messages = Message.objects.filter((Q(receiver__iexact=target) & Q(sent_by__iexact=username)) | (Q(receiver__iexact=username) & Q(sent_by__iexact=target))).order_by('-created_at')
             private_messages = private_messages.to_json()
+            # log
+            log_query = Logs(err_type="Read private messages from {}".format(target), username=username)
+            log_query.save()
             return Response(private_messages, mimetype="application/json", status=200)
         except DoesNotExist:
+            # log
+            log_query = Logs(err_type="NotExistsError", username=username)
+            log_query.save()
             raise NotExistsError
         except Exception:
+            # log
+            log_query = Logs(err_type="InternalServerError", username=username)
+            log_query.save()
             raise InternalServerError
 
     @jwt_required
@@ -28,6 +38,9 @@ class PrivateMessageApi(Resource):
             body = request.get_json()
             message_query = Message(receiver=target, message=body["message"], sent_by=username)
             message_query.save()
+            # log
+            log_query = Logs(err_type="A message sent to {}".format(target), username=username)
+            log_query.save()
             return '', 200
         except InvalidQueryError:
             # log
