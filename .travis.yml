@@ -1,18 +1,24 @@
-# After changing this file, check it on:
-#   http://lint.travis-ci.org/
-language: python
 sudo: required
-dist: bionic
 
-python:
-  - 3.7
-virtualenv:
-    system_site_package: true
+services:
+  - docker
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.23.2
+
 before_install:
- - sudo add-apt-repository -y ppa:edd/misc
- - sudo apt-get update
- - pip install -r requirements.txt
-install:
-    make build
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+before_script:
+  - docker-compose up -d --build
+
 script:
- - python -m unittest discover
+  - docker-compose exec users python manage.py test
+  - docker-compose exec users black project
+  - docker-compose exec users flake8 project
+
+after_script:
+  - docker-compose down
