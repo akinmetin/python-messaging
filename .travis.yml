@@ -17,14 +17,9 @@ before_install:
 after_success:
   - java -jar codacy-coverage-reporter-assembly.jar report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
 
-before_script:
+script:
   - docker-compose up --build -d
 
-script:
-  - docker-compose run app coverage run -m unittest
-
 after_script:
-  - docker-compose down
-
-after_success:
   - java -jar codacy-coverage-reporter-assembly.jar report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
+  - docker-compose down
