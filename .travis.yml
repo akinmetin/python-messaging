@@ -16,9 +16,7 @@ before_script:
   - docker-compose up --build -d
 
 script:
-  - docker-compose exec app /bin/bash "coverage run -m unittest"
-  - docker-compose exec app /bin/bash "coverage xml"
-  - docker-compose exec app /bin/bash "python-codacy-coverage -r coverage.xml"
+  - docker-compose exec -it app sh -c "coverage xml && python-codacy-coverage -r coverage.xml"
 
 after_script:
   - docker-compose down
