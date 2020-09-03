@@ -16,8 +16,8 @@ before_script:
   - docker-compose up -d --build
 
 script:
-  - docker-compose exec app python coverage xml
-  - docker-compose exec app python python-codacy-coverage -r coverage.xml
+  - docker-compose run app sh -c "coverage xml"
+  - docker-compose run app sh -c "python-codacy-coverage -r coverage.xml"
 
 after_script:
   - docker-compose down
