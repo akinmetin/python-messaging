@@ -16,7 +16,6 @@ before_script:
   - docker-compose up -d --build
 
 script:
-  - docker-compose run app sh -c "coverage run -m unittest"
   - docker-compose run app sh -c "coverage xml"
   - docker-compose run app sh -c "python-codacy-coverage -r coverage.xml"
 
