@@ -16,6 +16,7 @@ before_install:
 
 script:
   - docker-compose up --build -d
+  - docker-compose run app coverage xml
 
 after_script:
   - java -jar codacy-coverage-reporter-assembly.jar report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
