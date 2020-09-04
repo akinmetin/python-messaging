@@ -13,10 +13,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-* Download this repository and extract it to any folder.
-* Build and run it using Docker, then you will be able to send requests via Postman.
+*  Download this repository and extract it to any folder.
+*  Build and run it using Docker, then you will be able to send requests via Postman.
 
-### Allowed HTTPs requests:
+### Allowed HTTPs requests
 | Request Type | Use                                 |
 | ------------ |:----------------------------------- |
 | PUT          | To create resource                  |
@@ -24,17 +24,17 @@ These instructions will get you a copy of the project up and running on your loc
 | GET          | Get a resource or list of resources |
 | ~~DELETE~~   | ~~To delete resource~~              |
 
-### Description Of Usual Server Responses:
+### Description Of Usual Server Responses
 
-* 200 OK - the request was successful.
-* 201 Created - the request was successful and a resource was created.
-* 204 No Content - the request was successful but there is no representation to return (i.e. the response is empty).
-* 400 Bad Request - the request could not be understood or was missing required parameters.
-* 401 Unauthorized - authentication failed or user doesn't have permissions for requested operation.
-* 403 Forbidden - access denied.
-* 404 Not Found - resource was not found.
-* 405 Method Not Allowed - requested method is not supported for resource.
-* 500 Internal Server Error - the server encountered an unexpected condition which prevented it from fulfilling the request.
+*  200 OK - the request was successful.
+*  201 Created - the request was successful and a resource was created.
+*  204 No Content - the request was successful but there is no representation to return (i.e. the response is empty).
+*  400 Bad Request - the request could not be understood or was missing required parameters.
+*  401 Unauthorized - authentication failed or user doesn't have permissions for requested operation.
+*  403 Forbidden - access denied.
+*  404 Not Found - resource was not found.
+*  405 Method Not Allowed - requested method is not supported for resource.
+*  500 Internal Server Error - the server encountered an unexpected condition which prevented it from fulfilling the request.
 
 ## Endpoints
 
@@ -51,14 +51,14 @@ These instructions will get you a copy of the project up and running on your loc
 Endpoint: ``POST /api/auth/signup``
 
 Input:
-```
+```JSON
 {
     "username": "metin",
     "password": "123456789"
 }
 ```
 Output:
-```
+```JSON
 {
     "message": "Signup Success"
 }
@@ -67,14 +67,14 @@ Output:
 Endpoint: ``POST /api/auth/login``
 
 Input:
-```
+```JSON
 {
     "username": "metin",
     "password": "123456789"
 }
 ```
 Output:
-```
+```JSON
 {
     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkyMTc4NDIsIm0MiwianRpIjoiOGQ2Zjg4MzAt..."
 }
@@ -83,13 +83,13 @@ Output:
 Endpoint: ``PUT /api/message/akin``
 
 Input: (extra Bearer token field is required)
-```
+```JSON
 {
     "message": "hello"
 }
 ```
 Output:
-```
+```JSON
 {
     "message": "Message is successfully sent"
 }
@@ -100,7 +100,7 @@ Endpoint: ``GET /api/message/metin``
 Input: (using ``akin`` user, extra Bearer token field is required)
 
 Output:
-```
+```JSON
 [
     {
         "_id": {
@@ -134,7 +134,7 @@ Endpoint: ``GET /api/message/archive``
 Input: (using ``akin`` user, extra Bearer token field is required)
 
 Output:
-```
+```JSON
 [
     {
         "_id": {
@@ -178,8 +178,9 @@ Output:
 Endpoint: ``PUT /api/block/metin``
 
 Input: (extra Bearer token field is required)
+
 Output:
-```
+```JSON
 {
     "message": "User is successfully blocked"
 }
