@@ -49,7 +49,8 @@ class PrivateMessageApi(Resource):
             # log
             log_query = Logs(err_type="A message sent to {}".format(target), username=username)
             log_query.save()
-            return '', 200
+            message = {"message": "Message is successfully sent"}
+            return Response(json.dumps(message), mimetype="application/json", status=200)
         except InvalidQueryError:
             # log
             log_query = Logs(err_type="SchemaValidationError", username=username)
@@ -77,7 +78,8 @@ class BlockApi(Resource):
             # log
             log_query = Logs(err_type="{} blocked by {}".format(target, username), username=username)
             log_query.save()
-            return '', 200
+            message = {"message": "User is successfully blocked"}
+            return Response(json.dumps(message), mimetype="application/json", status=200)
         except InvalidQueryError:
             # log
             log_query = Logs(err_type="SchemaValidationError", username=username)

@@ -28,6 +28,7 @@ class TestPrivateMessage(initCase):
                                 data=json.dumps(message_payload))
 
         # check the equality of response data's status code and expected status code
+        self.assertEqual("Message is successfully sent", response.json[0]['message'])
         self.assertEqual(200, response.status_code)
 
     def test_successful_get_private_message(self):
@@ -97,6 +98,7 @@ class TestPrivateMessage(initCase):
                                 headers={"Content-Type": "application/json", "Authorization": f"Bearer {login_token}"})
 
         # check the equality of response data's status code and expected status code
+        self.assertEqual("User is successfully blocked", response.json[0]['message'])
         self.assertEqual(200, response.status_code)
 
         # Signup and login with "metin"
