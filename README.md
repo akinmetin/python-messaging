@@ -38,10 +38,158 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Endpoints
 
-| Request Type          | Endpoint                    | What it does                                       |
-| -----------------     |:--------------------------- |:-------------------------------------------------- |
-| ``GET``               | /api/Sales/All              | Returns list of sold article details.              |
-| ``GET``               | /api/Sales/All/Revenue      | Returns list of revenues by article numbers.       |
-| ``GET``               | /api/Sales/Daily            | Returns count of sold articles by day.             |
-| ``GET``               | /api/Sales/Daily/Revenue    | Returns list of article revenues by day.           |
-| ``POST``              | /api/Sales/Add/Sale         | Adds new sale into memory/database.                |
+| Request Type          | Endpoint                    | What it does                                               |
+| -----------------     |:--------------------------- |:---------------------------------------------------------- |
+| ``GET``, ``PUT``      | /api/message/<target>       | Send and get private message with another user             |
+| ``GET``               | /api/message/archive        | Returns all sent and received messages of authorized user  |
+| ``PUT``               | /api/block/<target>         | Block another user to communicate with authorized user     |
+| ``POST``              | /api/auth/signup            | User sign up endpoint                                      |
+| ``POST``              | /api/auth/login             | User login endpoint                                        |
+
+## Example API Calls
+
+Endpoint: ``POST /api/auth/signup``
+
+Input:
+```
+{
+    "username": "metin",
+    "password": "123456789"
+}
+```
+Output:
+```
+{
+    "message": "Signup Success"
+}
+```
+
+Endpoint: ``POST /api/auth/login``
+
+Input:
+```
+{
+    "username": "metin",
+    "password": "123456789"
+}
+```
+Output:
+```
+{
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTkyMTc4NDIsIm0MiwianRpIjoiOGQ2Zjg4MzAt..."
+}
+```
+
+Endpoint: ``PUT /api/message/akin``
+
+Input: (extra Bearer token field is required)
+```
+{
+    "message": "hello"
+}
+```
+Output:
+```
+{
+    "message": "Message is successfully sent"
+}
+```
+
+Endpoint: ``GET /api/message/metin``
+
+Input: (using ``akin`` user, extra Bearer token field is required)
+
+Output:
+```
+[
+    {
+        "_id": {
+            "$oid": "5f52222ed36baf102fb2e999"
+        },
+        "receiver": "akin",
+        "message": "hello",
+        "sent_by": "metin",
+        "created_at": {
+            "$date": 1599217338958
+        },
+        "read": 0
+    },
+    {
+        "_id": {
+            "$oid": "5f522305d36baf102fb2e99d"
+        },
+        "receiver": "metin",
+        "message": "hey",
+        "sent_by": "akin",
+        "created_at": {
+            "$date": 1599217338958
+        },
+        "read": 0
+    }
+]
+```
+
+Endpoint: ``GET /api/message/archive``
+
+Input: (using ``akin`` user, extra Bearer token field is required)
+
+Output:
+```
+[
+    {
+        "_id": {
+            "$oid": "5f52222ed36baf102fb2e999"
+        },
+        "receiver": "akin",
+        "message": "hello",
+        "sent_by": "metin",
+        "created_at": {
+            "$date": 1599217338958
+        },
+        "read": 0
+    },
+    {
+        "_id": {
+            "$oid": "5f522305d36baf102fb2e99d"
+        },
+        "receiver": "metin",
+        "message": "hey",
+        "sent_by": "akin",
+        "created_at": {
+            "$date": 1599217338958
+        },
+        "read": 0
+    },
+    {
+        "_id": {
+            "$oid": "5f522374d36baf102fb2e9a0"
+        },
+        "receiver": "ali",
+        "message": "im just coding",
+        "sent_by": "akin",
+        "created_at": {
+            "$date": 1599217338958
+        },
+        "read": 0
+    }
+]
+```
+
+Endpoint: ``PUT /api/block/metin``
+
+Input: (extra Bearer token field is required)
+Output:
+```
+{
+    "message": "User is successfully blocked"
+}
+```
+
+## Testing
+
+Test cases can be found in ``src/tests`` folder.
+
+All test cases are passing.
+
+Coverage test results are:
+![Image of Yaktocat](https://github.com/akinmetin/python-messaging/blob/master/img/coverage-report.jpg?raw=true)
