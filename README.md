@@ -13,8 +13,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-*  Download this repository and extract it to any folder.
-*  Build and run it using Docker, then you will be able to send requests via Postman.
+*   Download this repository and extract it to any folder.
+*   Build and run it using Docker, then you will be able to send requests via Postman.
 
 ### Allowed HTTPs requests
 | Request Type | Use                                 |
@@ -26,15 +26,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Description Of Usual Server Responses
 
-*  200 OK - the request was successful.
-*  201 Created - the request was successful and a resource was created.
-*  204 No Content - the request was successful but there is no representation to return (i.e. the response is empty).
-*  400 Bad Request - the request could not be understood or was missing required parameters.
-*  401 Unauthorized - authentication failed or user doesn't have permissions for requested operation.
-*  403 Forbidden - access denied.
-*  404 Not Found - resource was not found.
-*  405 Method Not Allowed - requested method is not supported for resource.
-*  500 Internal Server Error - the server encountered an unexpected condition which prevented it from fulfilling the request.
+*   200 OK - the request was successful.
+*   201 Created - the request was successful and a resource was created.
+*   204 No Content - the request was successful but there is no representation to return (i.e. the response is empty).
+*   400 Bad Request - the request could not be understood or was missing required parameters.
+*   401 Unauthorized - authentication failed or user doesn't have permissions for requested operation.
+*   403 Forbidden - access denied.
+*   404 Not Found - resource was not found.
+*   405 Method Not Allowed - requested method is not supported for resource.
+*   500 Internal Server Error - the server encountered an unexpected condition which prevented it from fulfilling the request.
 
 ## Endpoints
 
