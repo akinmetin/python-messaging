@@ -14,7 +14,8 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 *   Download this repository and extract it to any folder.
-*   Build and run it using Docker, then you will be able to send requests via Postman.
+*   Rename ``.env.dev`` to ``.env`` and edit the file, then build and run it using Docker.
+*   You will be able to send requests via Postman or other request methods and tools.
 
 ### Allowed HTTPs requests
 | Request Type | Use                                 |
@@ -104,25 +105,37 @@ Output:
 [
     {
         "_id": {
-            "$oid": "5f52222ed36baf102fb2e999"
+            "$oid": "5f53699c3f2ac73e37de984d"
         },
-        "receiver": "akin",
-        "message": "hello",
-        "sent_by": "metin",
+        "receiver": "metin",
+        "message": "how are you doing?",
+        "sent_by": "akin",
         "created_at": {
-            "$date": 1599217338958
+            "$date": 1599312844075
         },
         "read": 0
     },
     {
         "_id": {
-            "$oid": "5f522305d36baf102fb2e99d"
+            "$oid": "5f53697c3f2ac73e37de984b"
+        },
+        "receiver": "akin",
+        "message": "hello",
+        "sent_by": "metin",
+        "created_at": {
+            "$date": 1599312812147
+        },
+        "read": 0
+    },
+    {
+        "_id": {
+            "$oid": "5f5369523f2ac73e37de9848"
         },
         "receiver": "metin",
-        "message": "hey",
+        "message": "hey there",
         "sent_by": "akin",
         "created_at": {
-            "$date": 1599217338958
+            "$date": 1599312770016
         },
         "read": 0
     }
@@ -138,37 +151,61 @@ Output:
 [
     {
         "_id": {
-            "$oid": "5f52222ed36baf102fb2e999"
+            "$oid": "5f5369523f2ac73e37de9848"
+        },
+        "receiver": "metin",
+        "message": "hey there",
+        "sent_by": "akin",
+        "created_at": {
+            "$date": 1599312770016
+        },
+        "read": 0
+    },
+    {
+        "_id": {
+            "$oid": "5f53697c3f2ac73e37de984b"
         },
         "receiver": "akin",
         "message": "hello",
         "sent_by": "metin",
         "created_at": {
-            "$date": 1599217338958
+            "$date": 1599312812147
         },
         "read": 0
     },
     {
         "_id": {
-            "$oid": "5f522305d36baf102fb2e99d"
+            "$oid": "5f53699c3f2ac73e37de984d"
         },
         "receiver": "metin",
-        "message": "hey",
+        "message": "how are you doing?",
         "sent_by": "akin",
         "created_at": {
-            "$date": 1599217338958
+            "$date": 1599312844075
         },
         "read": 0
     },
     {
         "_id": {
-            "$oid": "5f522374d36baf102fb2e9a0"
+            "$oid": "5f536a283f2ac73e37de9852"
+        },
+        "receiver": "akin",
+        "message": "this is Ali",
+        "sent_by": "ali",
+        "created_at": {
+            "$date": 1599312984289
+        },
+        "read": 0
+    },
+    {
+        "_id": {
+            "$oid": "5f536a423f2ac73e37de9854"
         },
         "receiver": "ali",
-        "message": "im just coding",
+        "message": "hello Ali",
         "sent_by": "akin",
         "created_at": {
-            "$date": 1599217338958
+            "$date": 1599313010739
         },
         "read": 0
     }

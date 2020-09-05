@@ -7,7 +7,7 @@ class Message(db.Document):
     receiver = db.StringField(required=True)
     message = db.StringField(required=True)
     sent_by = db.StringField(required=True)
-    created_at = db.DateTimeField(required=True, default=datetime.utcnow())
+    created_at = db.DateTimeField(required=True, default=lambda: datetime.now())
     read = db.IntField(default=0)
 
 
@@ -25,10 +25,10 @@ class User(db.Document):
 class Logs(db.Document):
     err_type = db.StringField(required=True)
     username = db.StringField(required=True)
-    occured_at = db.DateTimeField(required=True, default=datetime.utcnow())
+    occured_at = db.DateTimeField(required=True, default=lambda: datetime.now())
 
 
 class Block(db.Document):
     blocker = db.StringField(required=True)
     blocked = db.StringField(required=True)
-    blocked_at = db.DateTimeField(required=True, default=datetime.utcnow())
+    blocked_at = db.DateTimeField(required=True, default=lambda: datetime.now())
