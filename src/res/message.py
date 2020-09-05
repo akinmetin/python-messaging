@@ -42,7 +42,6 @@ class PrivateMessageApi(Resource):
             if Block.objects.filter((Q(blocker__iexact=username) & Q(blocked__iexact=target)) | (Q(blocker__iexact=target) & Q(blocked__iexact=username))).count() >= 1:
                 message = {"message": "Communication between you and the target is blocked"}
                 return Response(json.dumps(message), mimetype="application/json", status=403)
-                # return 'Communication between you and the target is blocked', 403
 
             message_query = Message(receiver=target, message=body["message"], sent_by=username)
             message_query.save()
@@ -93,14 +92,6 @@ class BlockApi(Resource):
 
 
 class MessageArchiveApi(Resource):
-    # @jwt_required
-    # def put(self):
-    #     user_id = get_jwt_identity()
-    #     body = request.get_json()
-    #     message_query = Message(receiver=body["receiver"], message=body["message"], sent_by=user_id)
-    #     message_query.save()
-    #     return '', 200
-
     # get all messages sent from/to authenticated user
     @jwt_required
     def get(self):

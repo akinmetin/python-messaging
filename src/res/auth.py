@@ -15,10 +15,10 @@ class SignupApi(Resource):
             user = User(**body)
             user.hash_password()
             user.save()
-            # id = user.id
+
             Response("success", mimetype="application/json", status=200)
-            # return {'id': str(id)}, 200
             message = {"message": "Signup Success"}
+
             return Response(json.dumps(message), mimetype="application/json", status=200)
         except FieldDoesNotExist:
             # log
@@ -48,7 +48,6 @@ class LoginApi(Resource):
                 log_query = Logs(err_type="Login failed", username=body.get('username'))
                 log_query.save()
                 raise UnauthorizedError
-                # return {'message': 'Email or password invalid'}, 401
 
             # log
             log_query = Logs(err_type="Login success", username=body.get('username'))
